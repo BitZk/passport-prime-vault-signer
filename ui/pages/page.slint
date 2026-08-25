@@ -1,0 +1,66 @@
+// SPDX-FileCopyrightText: 2026 Foundation Devices, Inc. <hello@foundation.xyz>
+// SPDX-FileCopyrightText: 2026 BitZk contributors
+// SPDX-License-Identifier: MIT
+
+import { Theme, UISize, ControlSize } from "@ui/theme.slint";
+import { Button } from "@ui/button.slint";
+import { Card } from "@ui/card.slint";
+import { Navigate } from "../gen/navigate.slint";
+
+export component MainPagePage inherits Rectangle {
+    background: Theme.palette-background;
+
+    VerticalLayout {
+        width: parent.width;
+        height: parent.height;
+        padding-left: Theme.spacing-xl;
+        padding-right: Theme.spacing-xl;
+        padding-top: Theme.spacing-xl + UISize.control-center-status-bar-height;
+        padding-bottom: Theme.spacing-xl;
+        spacing: Theme.spacing-lg;
+
+        Text {
+            text: "Vault Signer";
+            color: Theme.palette-foreground;
+            font-family: Theme.font-primary;
+            font-size: Theme.font-size-title;
+            font-weight: Theme.font-weight-bold;
+            horizontal-alignment: center;
+        }
+
+        Text {
+            text: "Temporary seed integration for the Bitcoin Wallet";
+            color: Theme.palette-muted;
+            font-family: Theme.font-primary;
+            font-size: Theme.font-size-subtitle;
+            font-weight: Theme.font-weight-medium;
+            wrap: word-wrap;
+            horizontal-alignment: center;
+        }
+
+        Card {
+            width: 100%;
+            size: ControlSize.lg;
+            title: "Design prototype";
+            body: "This build has no seed permissions and cannot sign. It exists to review the intended on-device flow safely.";
+            footer: "Never enter real seed words into a development build.";
+        }
+
+        Card {
+            width: 100%;
+            size: ControlSize.lg;
+            title: "Upstream integration required";
+            body: "The built-in Vault and Bitcoin Wallet must be connected through Foundation-reviewed KeyOS services.";
+        }
+
+        Rectangle { vertical-stretch: 1; }
+
+        Button {
+            width: 100%;
+            text: "Review intended flow";
+            size: ControlSize.md;
+            full-width: true;
+            clicked => { Navigate.flow({ }); }
+        }
+    }
+}

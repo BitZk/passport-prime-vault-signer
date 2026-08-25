@@ -1,0 +1,55 @@
+name: Bug report
+description: Report reproducible prototype behavior without wallet or device secrets.
+title: "[Bug]: "
+labels: [bug, triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Never include seed words, private keys, xpubs, addresses, PSBTs, device IDs, certificates, logs containing wallet data, or signing material. Security vulnerabilities must use private reporting.
+  - type: input
+    id: commit
+    attributes:
+      label: Commit
+      description: Full commit SHA used for the test.
+    validations:
+      required: true
+  - type: dropdown
+    id: boundary
+    attributes:
+      label: Test boundary
+      options:
+        - Static review
+        - Unit test
+        - Foundation simulator
+        - Disposable regtest hardware
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Sanitized reproduction
+      description: Use synthetic labels and zeroed identifiers only.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I removed all wallet, device, signing, and personal data.
+          required: true
+        - label: This is not a privately reportable vulnerability.
+          required: true

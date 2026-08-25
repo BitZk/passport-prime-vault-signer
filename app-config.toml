@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2026 BitZk contributors
+# SPDX-License-Identifier: MIT
+
+app-name = "vault-signer"
+friendly-app-name = "Vault Signer"
+launcher-app-name = "Vault Signer"
+description = "UX and protocol prototype for temporary Vault-backed Bitcoin signing sessions"
+icon = "resources/icon.svg"
+theme = "resources/theme.json"
+app-id = "0xab0c050992dce408a8dfa41a8b0a4e5c"
+version = "0.1.0"
+min-keyos-version = "1.3.1"
+
+[publisher]
+name = "BitZk"
+contact-email = "BitZk@users.noreply.github.com"
+support-url = "https://github.com/BitZk/passport-prime-vault-signer/issues"
+
+# Deliberately minimal. This UX shell does not request seed, Vault storage,
+# NFC, backup, Keycard, or signing capabilities.
+[permissions]
+template = ["gui-app"]

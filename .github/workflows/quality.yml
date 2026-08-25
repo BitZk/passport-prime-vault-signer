@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2026 BitZk contributors
+# SPDX-License-Identifier: MIT
+
+name: quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Check public tree
+        run: ./scripts/check-public-tree.sh --staged
+
+      - name: Check SPDX headers
+        run: ./scripts/check-spdx.sh
+
+      - name: Check whitespace
+        run: git show --check --oneline HEAD
+
+  protocol-model:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Test the dependency-free host model
+        run: |
+          rustc --version
+          rustc --edition=2021 --test src/protocol.rs -o /tmp/vault-signer-protocol-tests
+          /tmp/vault-signer-protocol-tests

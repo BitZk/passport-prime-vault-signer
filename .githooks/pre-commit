@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2026 BitZk contributors
+# SPDX-License-Identifier: MIT
+
+set -euo pipefail
+
+./scripts/check-public-tree.sh --staged
+./scripts/check-spdx.sh
+git diff --cached --check

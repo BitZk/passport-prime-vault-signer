@@ -1,0 +1,36 @@
+name: Feature request
+description: Propose a scoped product, protocol, documentation, or test improvement.
+title: "[Feature]: "
+labels: [enhancement, triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user or reviewer problem should be solved?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed outcome
+    validations:
+      required: true
+  - type: textarea
+    id: security
+    attributes:
+      label: Security and permission impact
+      description: Identify trust-boundary, lifecycle, or failure-mode changes.
+    validations:
+      required: true
+  - type: dropdown
+    id: target
+    attributes:
+      label: Likely target
+      options:
+        - Prototype repository
+        - Upstream Foundation KeyOS
+        - Documentation only
+        - Needs design discussion
+    validations:
+      required: true

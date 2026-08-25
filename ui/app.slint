@@ -1,0 +1,18 @@
+// SPDX-FileCopyrightText: 2026 Foundation Devices, Inc. <hello@foundation.xyz>
+// SPDX-FileCopyrightText: 2026 BitZk contributors
+// SPDX-License-Identifier: MIT
+
+import { Theme, UISize, Images } from "@ui/theme.slint";
+import { Router } from "gen/router.slint";
+
+export { Theme, Images }
+export * from "gen/exports.slint";
+
+export component AppWindow inherits Window {
+    title: "Vault Signer";
+    preferred-width: UISize.screen-width;
+    preferred-height: UISize.screen-height;
+    background: Theme.palette-background;
+
+    Router { }
+}

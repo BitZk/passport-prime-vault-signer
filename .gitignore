@@ -1,0 +1,39 @@
+# Foundation SDK generated state
+.foundation-sdk/
+ui/gen/
+ui/ui/
+manifest.toml
+manifest.json
+
+# Rust and packaged artifacts
+target/
+*.app
+*.elf
+*.bin
+
+# Signing identities and certificates
+private.pem
+cosign2.toml
+*.key
+*.p8
+*.p12
+*.pfx
+*.pem
+*.crt
+*.cer
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.seed
+*.mnemonic
+*.psbt
+*.backup
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
