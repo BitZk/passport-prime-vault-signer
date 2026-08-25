@@ -8,7 +8,7 @@ No production version exists. The current repository is a research and UX protot
 
 ## Reporting a vulnerability
 
-Do not open a public issue for a vulnerability. Use GitHub's private vulnerability reporting page for this repository when it is available:
+Do not open a public issue for a vulnerability. Private vulnerability reporting is enabled for this repository. Use:
 
 <https://github.com/BitZk/passport-prime-vault-signer/security/advisories/new>
 
@@ -28,6 +28,10 @@ Deleting the file or rewriting the latest commit is not sufficient because clone
 6. Document the remediation without reproducing the secret.
 
 Never test this process with a wallet that controls value.
+
+## Prevention limits
+
+GitHub secret scanning and push protection are enabled. The local pre-commit hook and CI also reject selected secret-like filenames and high-confidence private-key patterns without printing matching content. These controls do not recognize every seed phrase or wallet-data format and do not replace manual review before publication. Never place real wallet or signing data in this checkout, even in an ignored file.
 
 ## Security gates before any production claim
 

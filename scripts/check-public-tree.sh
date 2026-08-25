@@ -40,8 +40,8 @@ done < <(list_paths)
 pattern='BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|xprv[1-9A-HJ-NP-Za-km-z]{50,}|AGE-SECRET-KEY-[A-Z0-9]{20,}'
 
 if [[ "$mode" == "--staged" ]]; then
-    if git grep --cached -n -I -E "$pattern" -- . \
-        ':!scripts/check-public-tree.sh' ':!.gitignore' ':!SECURITY.md'; then
+    # Report filenames only: matching content must never enter public CI logs.
+    if git grep --cached -l -I -E "$pattern" -- .; then
         printf 'possible secret-like staged content found\n' >&2
         failed=1
     else
@@ -50,10 +50,7 @@ if [[ "$mode" == "--staged" ]]; then
     fi
 else
     while IFS= read -r -d '' path; do
-        case "$path" in
-            ./scripts/check-public-tree.sh|./.gitignore|./SECURITY.md) continue ;;
-        esac
-        if grep -nIH -E "$pattern" "$path"; then
+        if grep -lI -E "$pattern" "$path"; then
             printf 'possible secret-like content found in %s\n' "$path" >&2
             failed=1
         else
