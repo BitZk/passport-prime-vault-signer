@@ -1,14 +1,18 @@
 # Upstream strategy
 
-## Why upstream is required
+## Current strategy — coordinate, do not duplicate
 
-The feature crosses the private storage and sensitive seed boundaries of two Foundation-signed applications. A sandboxed SDK app cannot safely or completely implement it. The production implementation should be reviewed and merged in Foundation's KeyOS repository.
+Foundation has confirmed the planned native feature and advised against hardware integration without a supported interface. Functional implementation is paused. Retain this repository as possible UX, protocol-design, documentation, and test input; do not start a separate vault or signer. See the [technical response summary and resume criteria](foundation-status.md).
+
+## Why native coordination is required
+
+The desired built-in Vault-to-Bitcoin flow crosses private storage and sensitive seed boundaries of two Foundation-signed applications. An ordinary SDK app has no supported selection or activation request for that flow. App-specific seeds and generic navigation do not substitute for such an interface. Any native implementation contribution would need Foundation coordination and review; a future supported interface must be evaluated on its actual contract.
 
 This repository remains useful as the independent proposal, UX prototype, threat model, protocol model, validation record, and community discussion space.
 
 ## Proposed KeyOS change surface
 
-The exact paths may change after Foundation review, but the current v1.3.1 source suggests these areas:
+This is exploratory material from the reviewed v1.3.1 snapshot, not an implementation assignment or Foundation-approved design. If a native contribution is agreed, the relevant areas might include:
 
 - `api/gui-server/src/navigation/vault.rs` — typed seed-selection request and secret-free result.
 - `api/gui-server/src/navigation.rs` — Vault app ID and navigation helper.
@@ -19,9 +23,11 @@ The exact paths may change after Foundation review, but the current v1.3.1 sourc
 - manifests and permission templates — narrowly scoped Foundation-app permissions only; no broad third-party template change.
 - integration tests — lifecycle, navigation, signing parity, replay rejection, failure recovery, and power/lock semantics.
 
-## Contribution sequence
+## Conditional implementation sequence
 
-1. Ask Foundation to confirm the product behavior and preferred security-service boundary.
+Do not start this sequence during the pause. Foundation's final design may replace it, and its own implementation may make a contribution unnecessary.
+
+1. Meet the documented resume criteria, agree on the contribution and integration boundary, and obtain the applicable security review checklist.
 2. Submit the protocol and lifecycle types without signing behavior.
 3. Add the security-service temporary session with exhaustive unit and IPC tests.
 4. Add the Vault selection/activation flow and trusted-display confirmation.

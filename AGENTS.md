@@ -1,6 +1,8 @@
 # Vault Signer agent guide
 
-This repository is a Foundation SDK app plus design material for a future upstream KeyOS integration.
+This repository is a simulator-safe Foundation SDK app plus exploratory design material for a possible native contribution.
+
+Functional implementation and hardware integration are paused following Foundation's response. Read `docs/foundation-status.md` before planning new work. Preserve the prototype and allow scoped non-secret UX/model, documentation, and test-proposal work; do not add seed storage, seed handoff, signing, or sensitive permissions. Resume only after the documented Foundation-interface/contribution and maintainer-approval gates are met. General encouragement for design feedback is not authorization to implement a native API.
 
 Before running `foundation` commands, read the packaged SDK guide at `<sdk-root>/docs/guide/src/foundation-cli.md`. Run `foundation doctor` inside `foundation develop`. Prefer `foundation preview` for UI checks and `foundation sim` for hosted runtime checks.
 

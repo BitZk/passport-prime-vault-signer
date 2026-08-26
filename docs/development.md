@@ -1,5 +1,7 @@
 # Development
 
+Functional seed handling and hardware integration are paused; see [project status](foundation-status.md). The simulator workflow below remains available for explicitly scoped non-secret prototype work. Hardware instructions are future reference only and do not authorize generating signing material or contacting a device.
+
 ## Toolchain
 
 Foundation's public SDK is Nix-first and supports macOS and Linux. Follow the [official Get Started guide](https://docs.foundation.xyz/developers/get-started/) rather than installing an unrelated Rust toolchain.
@@ -25,7 +27,7 @@ The first development-shell launch downloads the pinned compiler and dependencie
 and can take several minutes. Run `foundation doctor` only after the shell reports
 that it is ready.
 
-The current repository was structured from the signed `multi-page-app` template in SDK 1.0.0. Its minimum target is KeyOS 1.3.1 because that public source includes imported Bitcoin seeds in Vault.
+The current repository was structured from the signed `multi-page-app` template in SDK 1.0.0. Its declared minimum target is KeyOS 1.3.1, the public source snapshot reviewed for imported Bitcoin seeds in Vault. That target declaration is not evidence of a supported seed handoff or hardware compatibility validation.
 
 ## Simulator workflow
 
@@ -60,7 +62,7 @@ CI runs this host-only check and records the compiler version. It is not a KeyOS
 
 The public repository intentionally omits `signing-identity` and `cosign2-config` from `app-config.toml`. Foundation's documentation says these values are machine-specific and should not be committed.
 
-Do not generate signing material simply to work on the UX prototype. When a hardware milestone is explicitly approved:
+Do not generate signing material simply to work on the UX prototype. Only after the [resume criteria](foundation-status.md#conditions-to-resume) are met and a hardware milestone is separately explicitly approved:
 
 1. Generate the publisher identity outside the repository with `foundation cert gen`.
 2. Back up the private key through a separately reviewed secret-management process.

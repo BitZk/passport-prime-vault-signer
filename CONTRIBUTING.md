@@ -4,9 +4,9 @@ Thank you for helping make Vault Signer safer and easier to review.
 
 ## Before opening a change
 
-1. Read the [Architecture](docs/architecture.md), [Threat model](docs/threat-model.md), and accepted decisions under `docs/adr/`.
+1. Read the [project status and resume criteria](docs/foundation-status.md), [Architecture](docs/architecture.md), [Threat model](docs/threat-model.md), and decisions under `docs/adr/`. Internal ADR acceptance does not mean Foundation approval.
 2. Search existing issues and discussions.
-3. For seed handling, permissions, or cryptography, open a design issue before writing implementation code.
+3. While implementation is paused, limit contributions to scoped non-secret UX/model work, documentation, and test proposals. A design issue does not authorize seed handling, permission changes, cryptography integration, or hardware work; those require the documented resume gates first.
 4. Use only synthetic metadata. Never include a mnemonic, private key, real PSBT, xpub, address, device identifier, certificate, or signing configuration.
 
 ## Local checks

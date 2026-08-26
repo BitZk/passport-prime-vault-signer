@@ -1,6 +1,6 @@
 # ADR 0002: Keep entropy out of cross-app navigation
 
-- Status: Proposed, pending Foundation review
+- Status: Exploratory proposal retained during implementation pause; not Foundation-approved
 - Date: 2026-08-25
 
 ## Context
@@ -8,6 +8,8 @@
 KeyOS GUI navigation can carry serialized request and response buffers between apps. Returning mnemonic entropy from Vault to Bitcoin through that generic route would create extra copies in Vault, GUI-server, serialization, caller, error, and tracing buffers.
 
 ## Decision
+
+The following is one project proposal, not Foundation's implementation plan or a supported API. Foundation's response did not approve the service/session approach; see [project status](../foundation-status.md).
 
 Vault will ask a Foundation-controlled security service to activate the chosen seed and receive an opaque, boot-bound session ID. Cross-app navigation returns that ID plus non-secret display metadata. Bitcoin requests the active signing seed through a dedicated Foundation-only security API.
 

@@ -5,17 +5,22 @@ Vault Signer is a design-first Passport Prime project for temporarily applying a
 > [!WARNING]
 > This repository is an early feasibility and user-interface prototype. It does not read, store, activate, or sign with seed material. Do not enter real seed words into development builds, issues, pull requests, screenshots, or fixtures.
 
+> [!NOTE]
+> Functional implementation and hardware integration are paused. Foundation confirmed that temporary-seed use is planned natively, but no supported third-party Vault-to-Bitcoin handoff exists. Final scope and release timing were not confirmed. The simulator prototype is retained for possible UX, protocol-design, documentation, and test contributions. See [Foundation coordination and project status](docs/foundation-status.md).
+
 ## Why this project exists
 
-Foundation documents the intended flow as **Bitcoin Wallet → Apply Temporary Seed → Load from Vault**, and Prime's Vault can import external Bitcoin seeds. The current public KeyOS v1.3.1 source contains the Vault import model and the Bitcoin Wallet labels for this flow, but does not yet connect the two apps.
+Foundation documents the intended flow as **Bitcoin Wallet → Apply Temporary Seed → Load from Vault**, and Prime's Vault can import external Bitcoin seeds. The reviewed public KeyOS v1.3.1 snapshot contains the Vault import model and Bitcoin Wallet labels; no implemented handoff was found in that snapshot. Foundation subsequently confirmed the planned native feature and the unsupported third-party integration boundary, as summarized in the [status record](docs/foundation-status.md).
 
 That missing connection cannot be implemented honestly as an ordinary third-party SDK app:
 
 - KeyOS scopes each app's private storage, so another app cannot read the built-in Vault database.
+- The SDK's app-specific seed belongs to the calling app; it is not the primary Bitcoin seed or a stored Vault seed.
+- Generic app navigation does not expose a supported Vault selection or Bitcoin temporary-activation request to third-party apps.
 - Master-seed, PIN, backup, and NFC read/write operations are reserved for Foundation-signed apps.
 - Reimplementing the Bitcoin Wallet would duplicate its PSBT, account, multisig, passphrase, QR, file, and QuantumLink security surface.
 
-The project therefore targets an upstreamable KeyOS integration. The SDK app in this repository is a simulator-safe UX shell with no secret permissions. It provides a reviewable home for the interaction design, protocol contract, threat model, tests, and eventual Foundation-coordinated implementation.
+The project therefore preserves design input for a possible Foundation-coordinated contribution rather than pursuing a separate vault or signer. The SDK app is a simulator-safe UX shell with no secret permissions. Its interaction design, proposed protocol, threat model, and tests are not an approved native implementation plan.
 
 Relevant official sources:
 
@@ -28,6 +33,8 @@ Relevant official sources:
 - [Foundation KeyOS source](https://github.com/Foundation-Devices/KeyOS)
 
 ## Intended experience
+
+The following is the project's design goal, not confirmed Foundation release scope. Session behavior and feature/transport parity remain subject to native design review.
 
 1. The user opens the built-in Bitcoin Wallet and chooses **Apply Temporary Seed**.
 2. Prime opens the built-in Vault in a seed-selection mode.
@@ -80,16 +87,16 @@ Do not run `foundation cert gen`, commit `cosign2.toml`, or place signing keys i
 - [x] Establish an SDK-conformant, simulator-safe UX project.
 - [x] Define a secret-free navigation contract and session state model.
 - [x] Document the security invariants and upstream change surface.
-- [ ] Review the design with Foundation before changing a seed-handling API.
-- [ ] Implement the Foundation-signed Vault/security/Bitcoin integration in a pinned KeyOS worktree.
-- [ ] Add negative tests, simulator tests, hardware tests, and independent security review.
-- [ ] Produce reproducible artifacts only after every security gate passes.
+- [x] Ask Foundation about native plans and record the platform boundary.
+- [x] Pause functional implementation and hardware integration; retain research materials.
+- [ ] Reassess a supported interface or specific Foundation-coordinated contribution when available.
+- [ ] Obtain maintainer approval and the required design/security review before any implementation milestone resumes.
 
-See the [Roadmap](docs/roadmap.md) for completion criteria.
+See the [Roadmap](docs/roadmap.md) for conditional future milestones and the [status record](docs/foundation-status.md) for resume criteria.
 
 ## Contributing
 
-Community review is welcome, especially around the KeyOS permission boundary, temporary-seed lifecycle, account persistence, and failure handling. Read [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md) first.
+Community design, documentation, and test-proposal review is welcome, especially around seed identification, confirmation, temporary-seed lifecycle, and failure handling. Functional seed-handling and hardware contributions are paused. Read [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md) first.
 
 Never submit real wallet data. Use only structural placeholders such as `fingerprint: 00000000`; do not use published mnemonic test vectors because they are routinely mistaken for usable wallets.
 

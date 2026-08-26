@@ -8,6 +8,7 @@ Research date: 2026-08-25
 - Foundation consumer pages: Prime Vault, Prime Bitcoin Wallet, Files, Backups, and Passport Prime FAQs.
 - Foundation KeyOS public repository at commit `de966a11e88d28f116b52509679c19eb33591711`, described locally as `v1.3.1`.
 - GPG-signed Foundation SDK 1.0.0 common archive, SHA-256 `0426e7d42a7c7c140e99271a594a6f69fcb9695a777a728b6b4a35b0115e92ab`, signed by fingerprint `5DBE7F185293935315E56E31CFE1890AB7FC8B64`.
+- Foundation's response supplied by the maintainer, summarized in [Foundation coordination and project status](foundation-status.md). Private correspondence is not reproduced; this is a reported clarification rather than a new firmware test.
 
 ## Confirmed findings
 
@@ -19,14 +20,20 @@ Research date: 2026-08-25
 6. The current GUI navigation service already supports typed app-to-app request/response patterns, but passing raw entropy through its response buffer would increase secret exposure.
 7. The correct production boundary is a Foundation-reviewed integration, not a third-party app reading Vault storage.
 
+## Foundation clarification
+
+Foundation confirmed the planned native feature, including manual entry, SeedQR, and loading from Vault. At the time of the response there was no public release or beta, and final scope and timing were not confirmed. It also confirmed that the SDK's app-specific seed is separate from both the device Bitcoin seed and Vault entries, and that generic navigation exposes no supported third-party Vault-selection or temporary-activation request.
+
+Functional implementation and hardware integration are therefore paused. UX/protocol-design input, documentation, and test proposals remain possible contributions, not approval of the proposed API. See the [status record](foundation-status.md) for the source limits and resume criteria.
+
 ## Documentation drift noted
 
 - Developer pages displayed SDK `1.0.0-beta.1`; the signed latest installer selected `1.0.0`.
-- The consumer Bitcoin Wallet page documents loading a temporary seed from Vault, while the reviewed public v1.3.1 source does not implement that path.
+- The consumer Bitcoin Wallet page marks temporary-seed use, including loading from Vault, as forthcoming. Foundation's response clarifies that this describes planned behavior; it is not evidence of a working public interface or an overlooked implementation.
 - Foundation's FAQ language around seed access is less precise than the capability matrix, which marks direct master-seed operations as Foundation-signed only.
 - The developer overview simplifies private storage as `User`; the reviewed filesystem source distinguishes caller-scoped `AppData` from shared encrypted `User` files. Vault persistence uses `AppData`.
 
-These differences are why this project records exact source snapshots and treats product behavior as unconfirmed until demonstrated on current firmware.
+These differences are why this project records exact source snapshots and separates documented plans, Foundation's reported status, and behavior actually demonstrated on firmware.
 
 ## Pinned source entry points
 

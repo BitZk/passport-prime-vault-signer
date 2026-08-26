@@ -2,7 +2,9 @@
 
 ## Decision summary
 
-Vault Signer should extend Foundation's built-in Vault and Bitcoin Wallet rather than become a third wallet app. This preserves the existing signing parser, account model, multisig support, passphrases, address verification, transport handlers, and Foundation-controlled permission boundary.
+Functional implementation is paused; see [Foundation coordination and project status](foundation-status.md). This document preserves an exploratory native-integration design, not an available SDK API, Foundation's final design, or approval to change KeyOS.
+
+The project favors reusing Foundation's built-in Vault and Bitcoin Wallet rather than becoming a third wallet app. The intent is to preserve the existing signing parser, account model, multisig support, passphrases, address verification, transport handlers, and Foundation-controlled permission boundary. Actual feature parity remains subject to Foundation's unconfirmed final scope.
 
 The standalone SDK app in this repository is only a UX and protocol prototype. It intentionally cannot access the built-in Vault.
 

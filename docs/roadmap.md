@@ -1,5 +1,13 @@
 # Roadmap
 
+## Current position — implementation paused
+
+Foundation confirmed that native temporary-seed support is planned and that the required third-party interface is unavailable. Final scope and timing remain unconfirmed in the response. See [Foundation coordination and project status](foundation-status.md).
+
+Phase 0 is established. Phase 1 has answered the product-status and platform-boundary questions but has not approved an integration design. Non-secret UX/model review, documentation, and test proposals remain possible; phases 2–5 are conditional reference material, not active work or a promise to implement Foundation's feature.
+
+Do not resume functional or hardware work until the [resume criteria](foundation-status.md#conditions-to-resume) are met. Foundation's own implementation may remove the need for some or all of these phases.
+
 ## Phase 0 — public project foundation
 
 - SDK-conformant simulator UX shell.
@@ -12,14 +20,16 @@ Exit: repository checks pass and no production capability is claimed.
 
 ## Phase 1 — Foundation design alignment
 
-- Confirm whether the built-in documented flow is already implemented privately or planned.
-- Obtain Foundation's wallet/security review checklist.
-- Agree on security-service ownership, lock behavior, account metadata, backups, Envoy state, and NFC scope.
-- Convert open questions into accepted ADRs.
+- Completed: Foundation confirmed the planned native feature and unsupported third-party handoff; no public release or beta was available at the time of its response.
+- Pending: identify a supported interface or agree on a specific useful contribution without duplicating native work.
+- Before any resumed implementation: obtain the applicable wallet/security review checklist and agree on ownership, lock behavior, account metadata, backups, Envoy state, and transport scope.
+- Record design decisions separately from Foundation's approval; existing ADRs are project proposals or internal direction only.
 
-Exit: Foundation accepts or redirects the proposed integration boundary.
+Exit: the documented resume criteria are met and the maintainer approves a bounded milestone, or the project remains design/test input to Foundation's native feature.
 
-## Phase 2 — protocol and lifecycle
+## Conditional phase 2 — protocol and lifecycle
+
+The session-service approach below is one unapproved proposal. Replace or retire it if Foundation's supported design differs.
 
 - Add typed Vault navigation request/result types to a pinned KeyOS branch.
 - Add opaque, caller-bound, boot-bound temporary seed sessions to the security service.
@@ -27,7 +37,7 @@ Exit: Foundation accepts or redirects the proposed integration boundary.
 
 Exit: no seed entropy crosses the navigation protocol; lifecycle tests pass.
 
-## Phase 3 — Vault and Bitcoin integration
+## Conditional phase 3 — Vault and Bitcoin integration
 
 - Add Bitcoin-only Vault selection UI with label/fingerprint confirmation.
 - Add active seed-source handling to Bitcoin account derivation and signing.
@@ -36,7 +46,9 @@ Exit: no seed entropy crosses the navigation protocol; lifecycle tests pass.
 
 Exit: full simulator suite passes for primary and temporary seeds, including negative paths.
 
-## Phase 4 — device validation
+## Conditional phase 4 — device validation
+
+Requires separate explicit hardware/signing authorization; the pause is not lifted by a successful simulator run.
 
 - Build reproducibly from the reviewed full SHA.
 - Use only disposable regtest seeds and transactions.
@@ -45,11 +57,11 @@ Exit: full simulator suite passes for primary and temporary seeds, including neg
 
 Exit: documented hardware evidence and no unresolved high-severity issue.
 
-## Phase 5 — upstream and release readiness
+## Conditional phase 5 — upstream and release readiness
 
 - Independent security and cryptographic review.
 - Upstream KeyOS pull requests with small commits and complete test evidence.
 - Foundation product, UX, localization, accessibility, documentation, and trademark review.
 - Reproducible artifact provenance and release checklist.
 
-Exit: Foundation merges and releases the feature. Until then, Vault Signer remains experimental.
+Exit: if an implementation contribution is agreed, Foundation reviews, merges, and releases it through its own process. No release or endorsement is promised. This repository remains a non-signing research prototype unless its status is explicitly revised after review.

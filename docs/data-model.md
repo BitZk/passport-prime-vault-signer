@@ -1,5 +1,7 @@
 # Data model
 
+This is an exploratory model retained during the [implementation pause](foundation-status.md). The request, result, and session types below are not supported Foundation SDK APIs or an approved native data structure.
+
 ## Existing Vault storage
 
 KeyOS v1.3.1 stores Vault entries in the Vault app's private filesystem scope. Its public source models generated BIP85 Bitcoin seeds, imported BIP39 mnemonics, passwords, and Nostr keys in `apps/gui-app-seed-vault/src/seed.rs`; persistence is coordinated by `apps/gui-app-seed-vault/src/state.rs`.
