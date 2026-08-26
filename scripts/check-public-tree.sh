@@ -31,7 +31,7 @@ while IFS= read -r -d '' path; do
             failed=1
             ;;
     esac
-    if [[ "$mode" == "--staged" && "$path" == .foundation-sdk* ]]; then
+    if [[ "$mode" == "--staged" && ( "$path" == .foundation-sdk* || "$path" == ui/ui || "$path" == ui/ui/* ) ]]; then
         printf 'generated SDK mapping must not be tracked: %s\n' "$path" >&2
         failed=1
     fi

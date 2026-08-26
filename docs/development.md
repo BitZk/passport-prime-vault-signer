@@ -12,6 +12,19 @@ foundation develop
 foundation doctor
 ```
 
+Open a fresh terminal after installing Nix so its shell profile is loaded. If
+`foundation develop` reports that `nix-command` is disabled, enable the required
+features for that session without changing global Nix configuration:
+
+```bash
+NIX_CONFIG='extra-experimental-features = nix-command flakes' foundation develop
+foundation doctor
+```
+
+The first development-shell launch downloads the pinned compiler and dependencies
+and can take several minutes. Run `foundation doctor` only after the shell reports
+that it is ready.
+
 The current repository was structured from the signed `multi-page-app` template in SDK 1.0.0. Its minimum target is KeyOS 1.3.1 because that public source includes imported Bitcoin seeds in Vault.
 
 ## Simulator workflow
@@ -24,6 +37,11 @@ foundation preview ui/app.slint
 foundation sim
 cargo test
 ```
+
+`foundation preview` or `foundation sim` must run before direct Cargo checks in a
+fresh checkout: the CLI prepares the SDK mapping, manifest, UI imports, and
+project-local generated themes. The build script uses that local theme output
+unless `FOUNDATION_THEMES_RUST_DIR` explicitly overrides it.
 
 Run `foundation clean` after an SDK update so generated themes, manifests, and UI mappings match the new bundle.
 

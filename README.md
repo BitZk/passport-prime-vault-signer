@@ -95,7 +95,7 @@ Never submit real wallet data. Use only structural placeholders such as `fingerp
 
 ## Name and trademarks
 
-**Vault Signer** distinguishes this project from Coinkite's “Seed Vault” name and from Foundation's built-in “Vault” app while describing the integration precisely.
+**Vault Signer** describes the project's focus on deliberate seed selection and signing on Passport Prime.
 
 Passport, Passport Prime, KeyOS, Envoy, and Foundation are trademarks or product names of Foundation Devices. This independent project is not endorsed by Foundation Devices.
 

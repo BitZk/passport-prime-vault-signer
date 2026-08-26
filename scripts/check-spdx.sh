@@ -15,6 +15,7 @@ while IFS= read -r -d '' path; do
         failed=1
     fi
 done < <(find src ui resources scripts .githooks .github/workflows build.rs Cargo.toml app-config.toml permission_templates.toml \
+    -path ui/gen -prune -o \
     -type f \
     \( -name '*.rs' -o -name '*.slint' -o -name '*.toml' -o -name '*.sh' -o -name '*.yml' -o -name 'pre-commit' \) \
     -print0)

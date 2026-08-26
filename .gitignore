@@ -1,7 +1,7 @@
 # Foundation SDK generated state
 .foundation-sdk/
 ui/gen/
-ui/ui/
+ui/ui
 manifest.toml
 manifest.json
 
